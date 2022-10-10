@@ -10,18 +10,12 @@ func breakPalindrome(palindrome string) string {
 	if length == 1 {
 		return ""
 	}
-	var change byte
-	for i := 0; i < 23; i++ {
-		change = 'a' + byte(i)
-		for j := 0; j < length; j++ {
-			if palindrome[j] > change && j != length/2 {
-				return strings.Replace(palindrome, string(palindrome[j]), string(change), 1)
-			}
+	for j := 0; j < length; j++ {
+		if palindrome[j] != 'a' && j != length/2 {
+			return strings.Replace(palindrome, string(palindrome[j]), "a", 1)
 		}
 	}
-	aux := palindrome[length-1] + byte(1)
-
-	return palindrome[:length-1] + string(aux)
+	return palindrome[:length-1] + "b"
 }
 
 func main() {
