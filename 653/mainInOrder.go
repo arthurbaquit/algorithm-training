@@ -6,7 +6,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func findTarget(root *TreeNode, k int) bool {
+func findTargetInOrder(root *TreeNode, k int) bool {
 	numsList := []int{}
 	inOrder(root, &numsList)
 	i := 0
@@ -37,13 +37,13 @@ func inOrder(root *TreeNode, numsList *[]int) {
 	inOrder(root.Right, numsList)
 }
 
-func main() {
+func mainInOrder() {
 	root := &TreeNode{Val: 5}
 	root.Left = &TreeNode{Val: 3}
 	root.Right = &TreeNode{Val: 6}
 	root.Left.Left = &TreeNode{Val: 2}
 	root.Left.Right = &TreeNode{Val: 4}
 	root.Right.Right = &TreeNode{Val: 7}
-	println(findTarget(root, 9))
-	println(findTarget(root, 28))
+	println(findTargetInOrder(root, 9))
+	println(findTargetInOrder(root, 28))
 }
