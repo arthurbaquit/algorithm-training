@@ -7,10 +7,10 @@ func myAtoi(s string) int {
 	MaxInt, MinInt := (1<<31)-1, -1<<31
 	neg, overflow, start := false, false, false
 	for _, c := range s {
-		if c == ' ' && start == false {
+		if c == ' ' && !start {
 			continue
 		}
-		if c == '+' && start == false {
+		if c == '+' && !start {
 			start = true
 			continue
 		}
@@ -106,15 +106,15 @@ func myAtoi(s string) int {
 			overflow = true
 			break
 		}
-		if c == '-' && start == false {
+		if c == '-' && !start {
 			start = true
 			neg = true
 			continue
 		}
 		break
 	}
-	if neg == true {
-		if overflow == true {
+	if neg {
+		if overflow {
 			return MinInt
 		}
 		return -1 * num
