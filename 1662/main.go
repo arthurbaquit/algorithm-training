@@ -1,20 +1,41 @@
 package main
 
 func arrayStringsAreEqual(word1 []string, word2 []string) bool {
-	w1, w2 := "", ""
-	for i := 0; i < len(word1); i++ {
-		w1 += word1[i]
-	}
-	for i := 0; i < len(word2); i++ {
-		w2 += word2[i]
-	}
-	if len(w1) != len(w2) {
-		return false
-	}
-	for i := 0; i < len(w1); i++ {
-		if w1[i] != w2[i] {
+	i, j := 0, 0
+	ii, jj := 0, 0
+	l1, l2 := len(word1), len(word2)
+	ll1, ll2 := len(word1[i]), len(word2[j])
+	flag1, flag2 := false, false
+	for {
+		if word1[i][ii] != word2[j][jj] {
 			return false
 		}
+		ii++
+		jj++
+		if ii > ll1-1 {
+			i++
+			ii = 0
+			flag1 = true
+		}
+		if jj > ll2-1 {
+			j++
+			jj = 0
+			flag2 = true
+		}
+		if i > l1-1 || j > l2-1 {
+			break
+		}
+		if flag1 {
+			ll1 = len(word1[i])
+		}
+		if flag2 {
+			ll2 = len(word2[j])
+		}
+		flag1, flag2 = false, false
+
+	}
+	if i <= l1-1 || j <= l2-1 {
+		return false
 	}
 	return true
 }
