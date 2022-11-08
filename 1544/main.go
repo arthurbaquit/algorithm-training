@@ -9,7 +9,7 @@ func makeGood(s string) string {
 		diff := s[point1] - s[point2]
 		if diff == 32 || diff == 224 {
 			s = s[0:point1] + s[point2+1:]
-			l = len(s)
+			l = l - 2
 			if point1 != 0 {
 				point1--
 			}
