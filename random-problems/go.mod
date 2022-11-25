@@ -1,3 +1,3 @@
-module github.com/arthurbaquit/ramdom-problems/algorithm-training
+module github.com/arthurbaquit/algorithm-training/random-problems
 
 go 1.19
