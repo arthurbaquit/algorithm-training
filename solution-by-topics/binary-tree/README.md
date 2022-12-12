@@ -30,6 +30,20 @@ A altura é o o maior caminho entre o nó-raíz e uma folha. Por exemplo, uma á
 
 ## Implementação
 
+```go
+func binarySearch(nums []int, target int) int {
+    l := len(nums)
+    left, right := 0, l-1
+    for left<=right {
+        mid := (left+right)/2
+        if nums[mid] == target {return mid}
+        if nums[mid] > target {right = mid-1; continue}
+        left = mid+1
+    }
+    return -1
+}
+```
+
 ## Bibliografia
 
 [USP pdf](http://wiki.icmc.usp.br/images/9/93/ArvoresBin%C3%A1rias_Parte2.pdf)
