@@ -5,36 +5,19 @@ import "fmt"
 func sortedSquares(nums []int) []int {
 	l := len(nums)
 	squaredNumbers := make([]int, l)
-	index := 0
-	left, right := 0, 0
-	for right < l && nums[right] < 0 {
-		right++
-	}
-	left = right - 1
-	for left >= 0 && right < l {
+	left, right := 0, l-1
+
+	for i := l - 1; i >= 0; i-- {
 		if nums[left]*nums[left] <= nums[right]*nums[right] {
-			squaredNumbers[index] = nums[left] * nums[left]
-			index++
-			left--
+			squaredNumbers[i] = nums[right] * nums[right]
+			right--
 			continue
 		}
-		squaredNumbers[index] = nums[right] * nums[right]
-		index++
-		right++
-	}
-	for left >= 0 {
-		squaredNumbers[index] = nums[left] * nums[left]
-		index++
-		left--
-	}
-	for right < l {
-		squaredNumbers[index] = nums[right] * nums[right]
-		index++
-		right++
+		squaredNumbers[i] = nums[left] * nums[left]
+		left++
 	}
 	return squaredNumbers
 }
-
 func main() {
 	sorted := sortedSquares([]int{-4, -1, 0, 3, 10})
 	for _, v := range sorted {
