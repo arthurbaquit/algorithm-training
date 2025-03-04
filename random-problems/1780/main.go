@@ -17,8 +17,21 @@ func checkPowersOfThree(n int) bool {
 	return true
 }
 
+func checkPowersOfThreeEditorial(n int) bool {
+	for n > 0 {
+		if n%3 == 2 {
+			return false
+		}
+		n /= 3
+	}
+	return true
+}
+
 func main() {
-	println(checkPowersOfThree(12)) // true
-	println(checkPowersOfThree(91)) // true
-	println(checkPowersOfThree(21)) // false
+	println(checkPowersOfThree(12))          // true
+	println(checkPowersOfThree(91))          // true
+	println(checkPowersOfThree(21))          // false
+	println(checkPowersOfThreeEditorial(12)) // true
+	println(checkPowersOfThreeEditorial(91)) // true
+	println(checkPowersOfThreeEditorial(21)) // false
 }
