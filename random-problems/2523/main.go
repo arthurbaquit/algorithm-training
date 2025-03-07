@@ -51,8 +51,52 @@ func primes(x int) []bool {
 	return allPrimes
 }
 
-func main() {
-	fmt.Println(closestPrimes(10, 19)) // [11, 13]
-	fmt.Println(closestPrimes(4, 6))   // [-1, -1]
+func closestPrimesWithoutExtraSpace(left int, right int) []int {
+	lastPrime := -1
+	minDiff := 10000000
+	cA, cB := -1, -1
+	for i := left; i <= right; i++ {
+		if isPrime(i) {
+			if lastPrime != -1 {
+				diff := i - lastPrime
+				if diff < minDiff {
+					minDiff = diff
+					cA = lastPrime
+					cB = i
+				}
+				if diff == 1 || diff == 2 {
+					return []int{lastPrime, i}
+				}
+			}
+			lastPrime = i
+		}
+	}
+	if cA == -1 {
+		return []int{-1, -1}
+	}
+	return []int{cA, cB}
+}
+func isPrime(x int) bool {
+	if x == 1 {
+		return false
+	}
+	if x == 2 || x == 3 {
+		return true
+	}
+	if x%2 == 0 {
+		return false
+	}
+	for i := 3; i*i <= x; i += 2 {
+		if x%i == 0 {
+			return false
+		}
+	}
+	return true
+}
 
+func main() {
+	fmt.Println(closestPrimes(10, 19))                  // [11, 13]
+	fmt.Println(closestPrimesWithoutExtraSpace(10, 19)) // [11, 13]
+	fmt.Println(closestPrimesWithoutExtraSpace(4, 6))   // [-1, -1]
+	fmt.Println(closestPrimes(4, 6))                    // [-1, -1]
 }
