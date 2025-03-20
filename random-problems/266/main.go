@@ -17,8 +17,25 @@ func canPermutePalindrome(s string) bool {
 	return true
 }
 
+func canPermutePalindromeSinglePass(s string) bool {
+	letterCount := make(map[rune]int)
+	count := 0
+	for _, b := range s {
+		letterCount[b]++
+		if letterCount[b]%2 == 0 {
+			count--
+			continue
+		}
+		count++
+	}
+	return count <= 1
+}
+
 func main() {
-	println(canPermutePalindrome("code"))    // false
-	println(canPermutePalindrome("aab"))     // true
-	println(canPermutePalindrome("carerac")) // true
+	println(canPermutePalindrome("code"))              // false
+	println(canPermutePalindrome("aab"))               // true
+	println(canPermutePalindrome("carerac"))           // true
+	println(canPermutePalindromeSinglePass("code"))    // false
+	println(canPermutePalindromeSinglePass("aab"))     // true
+	println(canPermutePalindromeSinglePass("carerac")) // true
 }
